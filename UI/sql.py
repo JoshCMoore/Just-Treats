@@ -15,9 +15,13 @@ def connect():
 
         lat = 0.0
         long = 0.0
+        
+        try:
+            cursor.execute("""INSERT INTO treats VALUES (%s,%s)""",(lat,long))
+            conn.commit()
+        except:
+            conn.rollback()
 
-        args = [lat, long]
-        cursor.callproc('InsertLoc', args)
         if conn.is_connected():
             print('Connected to MySQL database')
  
@@ -25,6 +29,7 @@ def connect():
         print(e)
  
     finally:
+        cursor.close()
         conn.close()
  
  
