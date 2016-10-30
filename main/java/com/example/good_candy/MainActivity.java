@@ -98,14 +98,11 @@ public class MainActivity extends Activity implements LocationListener {
 
                 StrictMode.setThreadPolicy(policy);
                 try{
-                    String address = "http://linuxbro.com/coord?lat="+Double.toString(latitude).replace('.','d')+"&long="+Double.toString(longitude).replace('.','d');
+                    String address = "http://linuxbro.com/coord?lat="+Double.toString(latitude)+"&long="+Double.toString(longitude);
                     URL myURL = new URL(address);
                     HttpURLConnection myURLConnection = (HttpURLConnection) myURL.openConnection();
                     myURLConnection.connect();
                     myURLConnection.getResponseMessage();
-                    System.out.println(address);
-                    System.out.println("Worked");
-
                 }
                 catch(MalformedURLException e){
 
